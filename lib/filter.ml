@@ -1,8 +1,11 @@
 module String = struct
+  include String
+
   let catStringWith separator strA strB = strA ^ separator ^ strB
   let joinArray separator arr = Array.fold_left (catStringWith separator) "" arr
   let joinList separator arr = List.fold_left (catStringWith separator) "" arr
   let replace input output = Str.global_replace (Str.regexp_string input) output
+  let is_not_empty str = str != ""
 end
 
 module File = struct
@@ -39,7 +42,10 @@ let removeMultipleWhitespaces str =
   let re = Str.regexp_string "\\s+" in
   Str.global_replace re " " str
 
-let split_by_whitespaces = Str.split (Str.regexp "[ \t]+")
+let split_by_whitespaces str =
+  Str.split (Str.regexp "[ \t]+") str |> List.filter String.is_not_empty
+
+let show_list = Stdlib.String.concat ", "
 
 let print_list list =
   Stdlib.String.concat ", " list |> print_string |> print_newline
