@@ -1,6 +1,6 @@
 (library
- (name foo)
+ (name test)
  (libraries base stdio)
  (inline_tests)
  (preprocess
-  (pps ppx_inline_test)))
+  (pps ppx_inline_test ppx_assert ppx_expect)))

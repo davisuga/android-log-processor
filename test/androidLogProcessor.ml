@@ -1,3 +1,6 @@
 open Base
+open Stdio
 
-let%test "rev" = List.equal Int.equal (List.rev [ 3; 2; 1 ]) [ 1; 2; 3 ]
+let%expect_test "trivial" =
+  print_endline "Hello World!";
+  [%expect {| Hello World! |}]
